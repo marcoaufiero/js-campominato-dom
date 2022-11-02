@@ -12,15 +12,17 @@ let bombList = [];
 
 function bombGenerator(x){
     for(k = 0; k < 16; k++){
-    let bomb = Math.floor(Math.random()* x + 1);
-    if (!bombList.includes(bomb)) {
-        // ✅ only runs if value not in array
+    let bomb = parseInt(Math.floor(Math.random()* x + 1));
+    if (!bombList.includes(bomb)){
         bombList.push(bomb);
    }else{
         k--;
-   }
+   }   
 }
+    return bombList;
 }
+
+
 
 function play(){
 
@@ -34,19 +36,21 @@ if(difficultyLevel === 1){
     bombList = [];
     bombGenerator(100);
     console.log(bombList);
-
+    
     for(let i = 0; i < 100; i++){
 
         let activeSquare = squareGenerator();
         
-
-
         activeSquare.classList.add('squareEasy');
         activeSquare.innerText = i + 1;
+        console.log(parseInt(activeSquare.innerText))
     
         activeSquare.addEventListener('click', function(){
             this.classList.add('active');
             
+            if(bombList.includes(parseInt(activeSquare.innerText))){
+                activeSquare.classList.add('red')
+            }
             console.log(`Quadrato numero: ${activeSquare.innerText}`)
         })
 
@@ -66,16 +70,16 @@ if(difficultyLevel === 1){
         let activeSquare = squareGenerator();
 
         activeSquare.classList.add('squareMedium');
-
         activeSquare.innerText = i + 1;
     
         activeSquare.addEventListener('click', function(){
             this.classList.add('active');
+            if(bombList.includes(parseInt(activeSquare.innerText))){
+                activeSquare.classList.add('red')
+            }
             console.log(`Quadrato numero: ${activeSquare.innerText}`)
         })
     
-
-
         grid.append( activeSquare);
     
     }
@@ -92,17 +96,16 @@ if(difficultyLevel === 1){
         let activeSquare = squareGenerator();
 
         activeSquare.classList.add('squareHard');
-
         activeSquare.innerText = i + 1;
     
         activeSquare.addEventListener('click', function(){
             this.classList.add('active');
+            if(bombList.includes(parseInt(activeSquare.innerText))){
+                activeSquare.classList.add('red')
+            }
             console.log(`Quadrato numero: ${activeSquare.innerText}`)
         })
         
-    
-        
-
         grid.append( activeSquare);
     
     }

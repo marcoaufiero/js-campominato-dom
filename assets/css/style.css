@@ -79,6 +79,10 @@ footer{
     background-color: #1F2833;
 }
 
+.red{
+    background-color: red;
+}
+
 .btn{
     font-size: 1.3rem;
     padding: 10px 20px;
