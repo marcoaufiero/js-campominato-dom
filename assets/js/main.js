@@ -1,6 +1,7 @@
 
 const grid = document.getElementById('grid');
 console.log(grid);
+let gameOver = false;
 
 function squareGenerator(){
     const div = document.createElement('div');
@@ -30,7 +31,7 @@ document.getElementById('score').innerText = `Score: 0`
 let score = 0;
 document.getElementById('result').innerText = ''
 let difficultyLevel = parseInt(document.getElementById('difficulty').value);
-
+document.getElementById('grid').classList.remove('gameover');
 console.log(difficultyLevel);
 
 if(difficultyLevel === 1){
@@ -97,6 +98,8 @@ for(let i = 0; i < squares.length; i++){
     activeSquare.addEventListener('click', function(){
           
         if(bombList.includes(parseInt(activeSquare.innerText))){
+
+            
             
             for(let y = 0; y < squares.length; y++){
 
@@ -105,17 +108,25 @@ for(let i = 0; i < squares.length; i++){
                 }
 
             }
-
+            gameOver = true;
             document.getElementById('result').innerText = `Hai Perso`
-
+            if(gameOver = true){
+                console.log('gameover')
+                console.log(document.getElementsByTagName('main'))
+                document.getElementById('grid').classList.add('gameover');
+                
+            }
         }else{
-            this.classList.add('active');
+            this.classList.add('active','gameover');
             score = score + 1;
             document.getElementById('score').innerText = `Score: ${score}`
         }
         console.log(`Quadrato numero: ${activeSquare.innerText}`)
     })
 }
+
+
+
 
 }
 
