@@ -52,7 +52,6 @@ footer{
 
 .square{
     border: 2px solid #1F2833;
-    width: calc(100% / 10);
     aspect-ratio: 1/1;
     cursor: pointer;
     background-color: #45A29E;
@@ -62,6 +61,18 @@ footer{
     font-size: 30px;
     color: white;
     
+}
+
+.squareEasy{
+    width: calc(100% / 10);
+}
+
+.squareMedium{
+    width: calc(100% / 9);
+}
+
+.squareHard{
+    width: calc(100% / 7);
 }
 
 .active{
