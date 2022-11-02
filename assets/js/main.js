@@ -26,6 +26,9 @@ function bombGenerator(x){
 
 function play(){
 
+document.getElementById('score').innerText = `Score: 0`
+let score = 0;
+document.getElementById('result').innerText = ''
 let difficultyLevel = parseInt(document.getElementById('difficulty').value);
 
 console.log(difficultyLevel);
@@ -103,8 +106,12 @@ for(let i = 0; i < squares.length; i++){
 
             }
 
+            document.getElementById('result').innerText = `Hai Perso`
+
         }else{
             this.classList.add('active');
+            score = score + 1;
+            document.getElementById('score').innerText = `Score: ${score}`
         }
         console.log(`Quadrato numero: ${activeSquare.innerText}`)
     })
