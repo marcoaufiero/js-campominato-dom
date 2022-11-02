@@ -39,22 +39,12 @@ if(difficultyLevel === 1){
     
     for(let i = 0; i < 100; i++){
 
-        let activeSquare = squareGenerator();
+        let square = squareGenerator();
         
-        activeSquare.classList.add('squareEasy');
-        activeSquare.innerText = i + 1;
-        console.log(parseInt(activeSquare.innerText))
-    
-        activeSquare.addEventListener('click', function(){
-            this.classList.add('active');
-            
-            if(bombList.includes(parseInt(activeSquare.innerText))){
-                activeSquare.classList.add('red')
-            }
-            console.log(`Quadrato numero: ${activeSquare.innerText}`)
-        })
-
-        grid.append( activeSquare);
+        square.classList.add('squareEasy');
+        square.innerText = i + 1;
+        
+        grid.append( square);
     
     }
 
@@ -67,20 +57,12 @@ if(difficultyLevel === 1){
 
     for(let i = 0; i < 81; i++){
 
-        let activeSquare = squareGenerator();
+        let square = squareGenerator();
 
-        activeSquare.classList.add('squareMedium');
-        activeSquare.innerText = i + 1;
+        square.classList.add('squareMedium');
+        square.innerText = i + 1;
     
-        activeSquare.addEventListener('click', function(){
-            this.classList.add('active');
-            if(bombList.includes(parseInt(activeSquare.innerText))){
-                activeSquare.classList.add('red')
-            }
-            console.log(`Quadrato numero: ${activeSquare.innerText}`)
-        })
-    
-        grid.append( activeSquare);
+        grid.append( square);
     
     }
     
@@ -93,23 +75,40 @@ if(difficultyLevel === 1){
 
     for(let i = 0; i < 49; i++){
 
-        let activeSquare = squareGenerator();
+        let square = squareGenerator();
 
-        activeSquare.classList.add('squareHard');
-        activeSquare.innerText = i + 1;
-    
-        activeSquare.addEventListener('click', function(){
-            this.classList.add('active');
-            if(bombList.includes(parseInt(activeSquare.innerText))){
-                activeSquare.classList.add('red')
-            }
-            console.log(`Quadrato numero: ${activeSquare.innerText}`)
-        })
+        square.classList.add('squareHard');
+        square.innerText = i + 1;
         
-        grid.append( activeSquare);
+        grid.append( square);
     
     }
 }
 
+let squares = document.querySelectorAll('.square');
+
+
+for(let i = 0; i < squares.length; i++){
+    
+    let activeSquare = squares[i]
+    activeSquare.addEventListener('click', function(){
+          
+        if(bombList.includes(parseInt(activeSquare.innerText))){
+            
+            for(let y = 0; y < squares.length; y++){
+
+                if(bombList.includes(parseInt(squares[y].innerText))){
+                  squares[y].classList.add('red')
+                }
+
+            }
+
+        }else{
+            this.classList.add('active');
+        }
+        console.log(`Quadrato numero: ${activeSquare.innerText}`)
+    })
+}
 
 }
+
